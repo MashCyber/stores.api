@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: rest-api-2024-03-26 
+    ports: 
+      - "5000:5000"
+    volumes:
+      - ./:/app
+    
