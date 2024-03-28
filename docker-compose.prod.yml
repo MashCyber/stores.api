@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  digisacco-proxy:
+    image: nginx:alpine
+    container_name: digisacco-proxy
+    restart: always
+    ports:
+      - "2047:80"
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf"
+    networks:
+      - diginet
+  
+  digisacco-ussd:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: digisacco-ussd
+    depends_on:
+      - digisacco-proxy
+    ports:
+      - "2048:2048"
+    volumes:
+      - ./:/app
+    networks:
+      - diginet
+
+networks:
+  diginet:
