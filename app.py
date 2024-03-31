@@ -30,7 +30,7 @@ def create_app(db_url=None):
 
     #SQLAlchemy || DB Connection string
     
-    app.config["SQLALCHEMY_DATABASE_URI"] = db_url or os.getenv("DATABASE_URL","sqlite:///data.db")
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_url or os.getenv("DATABASE_URL","sqlite:///instance/data.db")
 
     
     db.init_app(app) #connect flask app to sqlalchemy
