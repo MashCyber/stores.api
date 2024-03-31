@@ -32,12 +32,8 @@ def create_app(db_url=None):
     
     app.config["SQLALCHEMY_DATABASE_URI"] = db_url or os.getenv("DATABASE_URL","sqlite:///instance/data.db")
 
-    
     db.init_app(app) #connect flask app to sqlalchemy
-
-    # with app.app_context(): # creates all tables at first rqst/ ignores creation if tables already exists
-    #     db.create_all()
-
+    
     #Migrate
     migrate = Migrate(app, db)
 
